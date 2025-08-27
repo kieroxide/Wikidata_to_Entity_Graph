@@ -21,8 +21,10 @@ def build_property_query(QID: str, LIMIT: str):
 PROPERTY_DETAILS_QUERY = ["""SELECT ?property ?propertyLabel ?value ?valueLabel
     WHERE {
       wd:""", None,""" ?property ?value .
-      VALUES ?property {""", None,"""
-      }
+      VALUES ?property {""", None,"""}
+      
+      FILTER(isURI(?value))
+      
       SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
     }"""]
 
