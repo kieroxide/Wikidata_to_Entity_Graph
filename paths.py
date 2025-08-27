@@ -1,0 +1,1 @@
+Q_CODE_PATH = "./q_codes_cache.json"
