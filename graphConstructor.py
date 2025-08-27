@@ -1,90 +1,59 @@
-from dataclasses import dataclass
 from collections import defaultdict
-from paths import Q_CODE_PATH
-import requests
+from paths import Q_CODE_PATH, P_CODE_PATH, DATA_PATH
+from cache import is_pcode, is_qcode, lookup_label
 import json
-import os
-import re
 
-@dataclass
-class Node:
-    qid: str
-    label: str
-    type: str
 
-@dataclass
-class Edge:
-    source: str
-    target: str
-    type: str
-
-def build_graph(data):
+def build_graph(data, source_qid):
     data = data["results"]["bindings"]
+    QIDS = set()
+    nodes = {}
+    edges = defaultdict(list)
 
     for part in data:
-        # Skips any literals (non-entities)
+        ### Nodes
         value_part = part["value"]
-        if value_part["type"] != "uri":
+
+        # Skips any literals (non-entities) and media files
+        if value_part["value"].startswith(
+            "http://commons.wikimedia.org/wiki/Special:FilePath/"
+        ):
             continue
 
-        qid = value_part["value"].split("/")[-1]
-        label = part.get("valueLabel", {}).get("value", qid)
-        if(is_qcode(label)):
-            label = lookup_label(qid)
-        node = Node(qid, label, None)
+        if value_part["type"] != "uri":
+            continue
         
-        print(node)
+        qid = value_part["value"].split("/")[-1]
+        if qid in QIDS:
+            continue # Removes duplicates
+        QIDS.add(qid)
 
-def lookup_label(qid: str) -> str:
-    """Looks for q_code in cached codes. if not found searches the API"""
+        label = part.get("valueLabel", {}).get("value", qid)
+        type: str = part.get("valueTypeLabel", {}).get("value", "null")
+        
+        if type:
+            type = type.title()
+        # Sometimes no label is available so using q code allows us to try get a label    
+        if is_qcode(label):
+            label = lookup_label(qid, Q_CODE_PATH).title()
 
-    q_codes = load_q_codes()
-    if qid in q_codes:
-        return q_codes[qid]
+        nodes[qid] = {"label": label, "type": type}
+
+        ### Edges
+        source = source_qid  # the main entity queried
+        target = qid
+        prop_id = part["property"]["value"].split("/")[-1]
+
+        prop_label: str = part.get("propertyLabel", {}).get("value", prop_id)
+        # Again sometimes label isn't there so a straight lookup using the prop_id/p_code is used
+        if is_pcode(prop_label.split("/").pop()):
+            prop_label = lookup_label(prop_id, P_CODE_PATH).title()
+
+        edges[source].append(
+            {"target": target, "prop_id": prop_id, "prop_label": prop_label}
+        )
+
+    graph = {"nodes": nodes, "edges": edges}
     
-    try:
-        headers = {
-            "User-Agent": "MyWikidataBot/1.0 (your_email@example.com)"
-        }
-
-        url = f"https://www.wikidata.org/wiki/Special:EntityData/{qid}.json"
-        r = requests.get(url, headers=headers)
-
-        if r.status_code != 200:
-            print(f"Failed to fetch {qid}: status {r.status_code}")
-            url = f"https://www.wikidata.org/wiki/Special:EntityData/{qid}.json"
-
-        entity = r.json()["entities"][qid]
-        labels = entity.get("labels", {})
-
-        if labels:
-            label = next(iter(labels.values())).get("value", qid) # Looks for the first label
-        else:
-            label = qid
-
-        q_codes[qid] = label
-        # Saves the code to the json to cache and prevent using the API again
-        with open(Q_CODE_PATH, "w") as f:
-            json.dump(q_codes, f)
-        return label
-
-    except Exception as e:
-        print(f"Error Occurred : {e}")
-
-def load_q_codes():
-    """Loads the q code cache from a file to prevent slow API calls"""
-    if os.path.exists(Q_CODE_PATH):
-        with open(Q_CODE_PATH, "r") as f:
-            q_codes = json.load(f)
-        return q_codes
-    else:
-        q_codes = defaultdict()
-        with open(Q_CODE_PATH, "w") as f:
-            json.dump(q_codes, f)
-
-def is_qcode(value: str) -> bool:
-    return bool(re.fullmatch(r"Q\d+", value))
-
-
-def get_type():
-    pass
+    with open(DATA_PATH, "w") as f:
+        json.dump(graph, f, indent=2)
