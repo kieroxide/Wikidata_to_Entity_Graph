@@ -25,12 +25,12 @@ class Wikidata_Client:
                     return None
                 sleep(1)
 
-    def get_entities_relations(self, entity_ids: list[str], property_limit: int = 100):
+    def get_entity_relations(self, entity_ids: list[str], property_limit: int = 100):
         """Returns up to {limit} triples (source QID, property PID, target QID) 
         for a list of QIDs as a set"""
 
         relationships = set()
-        
+
         values_clause = " ".join([f"wd:{eid}" for eid in entity_ids])
         query = f"""
             SELECT ?source ?property ?target WHERE {{
@@ -49,29 +49,5 @@ class Wikidata_Client:
             property_id = result["property"]["value"].split("/").pop()
             target_id = result["target"]["value"].split("/").pop()
             relationships.add((source_id, property_id, target_id))
-
-        return relationships
-
-
-    def get_entity_relations(self, entity_id: str, property_limit: str = 100):
-        """Returns up to {limit} triples (property PID, target QID) from a source QID as a set"""
-        relationships = set()
-
-        query = f"""SELECT ?property ?target WHERE {{
-                  wd:{entity_id} ?property ?target .
-                  # Filters for only Entity -> Entity relationships
-                    FILTER(STRSTARTS(STR(?target), "http://www.wikidata.org/entity/Q")) 
-                }} LIMIT {property_limit}"""
-        
-        data = self.__execute_query(query)
-        # Returns empty set if wikidata fetch was no successful
-        if not data:
-            return relationships
-        
-        results = data["results"]["bindings"]
-        for result in results:
-            property_id = result["property"]["value"].split("/").pop()
-            target_id = result["target"]["value"].split("/").pop()
-            relationships.add((entity_id, property_id, target_id))
 
         return relationships

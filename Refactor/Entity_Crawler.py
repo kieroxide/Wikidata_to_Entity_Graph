@@ -20,7 +20,7 @@ class Entity_Crawler:
         self.entity_ids.add(root_entity_id)
 
         for _ in range(0, crawl_depth + 1): # Add one for inital crawl
-            relations = self.wiki_client.get_entities_relations(self.entity_ids)
+            relations = self.wiki_client.get_entity_relations(self.entity_ids)
 
             # Fake enums for clarity accessing tuple
             SOURCE = 0 
