@@ -1,6 +1,7 @@
 from Wikidata_Client import Wikidata_Client
 
 class Entity_Crawler:
+    """Crawls Wikidata starting from a root entity to collect entity-to-entity relations."""
     def __init__(self):
         self.wiki_client = Wikidata_Client()
         self.entity_ids = set()
@@ -16,7 +17,8 @@ class Entity_Crawler:
         return str(data)
 
     def crawl_wiki(self, root_entity_id , crawl_depth = 0):
-        """Gets all entity to entity relations, updates class fields, iterates to crawl over new ids """
+        """Crawls Wikidata starting from a root entity, collecting relations and expanding to 
+        newly discovered entities up to a specified depth."""
         self.entity_ids.add(root_entity_id)
 
         for _ in range(0, crawl_depth + 1): # Add one for inital crawl
