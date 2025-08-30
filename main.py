@@ -1,16 +1,44 @@
-from query_builder import build_property_query, build_property_details_query
-from API import execute_query
-from graphConstructor import build_graph
+from Graph import Graph
+from paths import DATA_PATH
 
 
 def main():
-    QID = "Q193581"
-    LIMIT = "100"
-    p_query = build_property_query(QID, LIMIT)
-    p_res = execute_query(p_query)
-    p_d_query = build_property_details_query(QID, p_res)
-    p_d_res = execute_query(p_d_query)
-    build_graph(p_d_res, QID)
+    QIDS = [
+    "Q247",         # Half-Life 2
+    "Q1299",        # The Beatles
+    "Q42",          # Douglas Adams
+    "Q30",          # United States
+    "Q8338",        # Harry Potter
+    "Q140960",      # Marvel Cinematic Universe
+    "Q380",         # Star Wars
+    "Q317521",      # Elon Musk
+    "Q328",         # Wikipedia
+    "Q2065",        # Linux
+    "Q155",         # Pokémon
+    "Q17365",       # Minecraft
+    "Q76",          # Barack Obama
+    "Q95",          # Google
+    "Q93105",       # Iron Man
+    "Q84",          # London
+    "Q12010",       # Shrek
+    "Q134268",      # Breaking Bad
+    "Q134231",      # Pokémon Go
+    "Q29598584",    # OpenAI
+    "Q42",          # Douglas Adams (duplicate for testing)
+    "Q42",          
+]
+    
+    graph = Graph()
+    i = 0
+    limit = 0
+    for QID in QIDS:
+        if i > limit:
+            break
+        graph.expand_graph(QID, maxDepth=2)
+        i += 1
+        print(i)
+    graph.save_to_json(DATA_PATH)
+    print(len(graph.vertices))
 
 
 main()

@@ -21,7 +21,7 @@ def build_property_query(QID: str, LIMIT: str):
     for part in TOP_X_PROPERTIES_QUERY:
         if part == None:
             part = to_insert.pop(0)
-        query += part
+        query += str(part)
     return query
 
 
@@ -50,7 +50,7 @@ def build_property_details_query(QID: str, PROPERTIES_RAW: dict):
     for part in PROPERTY_DETAILS_QUERY:
         if part == None:
             part = to_insert.pop(0)
-        query += part
+        query += str(part)
     return query
 
 
