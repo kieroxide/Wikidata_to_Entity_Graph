@@ -1,826 +1,117 @@
 {
-  "nodes": {
-    "Q30": {
-      "label": "United States",
+  "vertices": {
+    "Q119662": {
+      "label": "Volkswagen Pointer",
+      "type": "Automobile Model"
+    },
+    "Q152946": {
+      "label": "Volkswagen Beetle",
+      "type": "Automobile Model"
+    },
+    "Q183": {
+      "label": "Germany",
       "type": "Country"
     },
-    "Q94": {
-      "label": "Q94",
-      "type": "Computing Platform"
-    },
-    "Q150": {
-      "label": "French",
-      "type": "Natural Language"
-    },
-    "Q188": {
-      "label": "German",
-      "type": "Language"
-    },
-    "Q250": {
-      "label": "computer keyboard",
-      "type": "Null"
-    },
-    "Q388": {
-      "label": "Q388",
-      "type": "Operating System"
-    },
-    "Q652": {
-      "label": "Italian",
-      "type": "Natural Language"
-    },
-    "Q809": {
-      "label": "Polish",
-      "type": "Natural Language"
-    },
-    "Q907": {
-      "label": "Gordon Freeman",
-      "type": "Video Game Character"
-    },
-    "Q1321": {
-      "label": "Spanish",
-      "type": "Natural Language"
-    },
-    "Q1406": {
-      "label": "Microsoft Windows",
-      "type": "Operating System"
-    },
-    "Q1412": {
-      "label": "Finnish",
-      "type": "Natural Language"
-    },
-    "Q1860": {
-      "label": "English",
-      "type": "Natural Language"
-    },
-    "Q2407": {
-      "label": "Q2407",
-      "type": "Programming Language"
-    },
-    "Q5146": {
-      "label": "Portuguese",
-      "type": "Natural Language"
-    },
-    "Q5287": {
-      "label": "Japanese",
-      "type": "Natural Language"
-    },
-    "Q5294": {
-      "label": "Q5294",
-      "type": "Physical Media Format"
-    },
-    "Q7411": {
-      "label": "Dutch",
-      "type": "Natural Language"
-    },
-    "Q7737": {
-      "label": "Russian",
-      "type": "Natural Language"
-    },
-    "Q7889": {
-      "label": "video game",
-      "type": "Software Category"
-    },
-    "Q7987": {
-      "label": "computer mouse",
-      "type": "Null"
-    },
-    "Q9027": {
-      "label": "Swedish",
-      "type": "Language"
-    },
-    "Q9035": {
-      "label": "Danish",
-      "type": "Natural Language"
-    },
-    "Q9043": {
-      "label": "Norwegian",
-      "type": "Language"
-    },
-    "Q9176": {
-      "label": "Korean",
-      "type": "Natural Language"
-    },
-    "Q9217": {
-      "label": "Thai",
-      "type": "Natural Language"
-    },
-    "Q10683": {
-      "label": "PlayStation 3",
-      "type": "Product Model"
-    },
-    "Q14116": {
-      "label": "Q14116",
-      "type": "Operating System"
-    },
-    "Q18951": {
-      "label": "Half-Life 2: Episode One",
-      "type": "Video Game"
-    },
-    "Q27468": {
-      "label": "Eastern Europe",
-      "type": "Region"
-    },
-    "Q34467": {
-      "label": "compact disc",
-      "type": "Product Category"
-    },
-    "Q45836": {
-      "label": "GameSpot",
-      "type": "Organization"
-    },
-    "Q48263": {
-      "label": "Q48263",
-      "type": "Model Series"
-    },
-    "Q79576": {
-      "label": "Google Play",
-      "type": "Proprietary Software"
-    },
-    "Q132020": {
-      "label": "Xbox",
-      "type": "Video Game Console Model"
-    },
-    "Q165970": {
-      "label": "touchscreen",
-      "type": "Null"
-    },
-    "Q185029": {
-      "label": "first-person shooter",
-      "type": "Video Game Genre"
-    },
-    "Q193559": {
-      "label": "Valve Corporation",
-      "type": "Video Game Developer"
-    },
-    "Q207708": {
-      "label": "IGN",
-      "type": "Online Newspaper"
-    },
-    "Q208850": {
-      "label": "single-player video game",
-      "type": "Game Mode"
-    },
-    "Q211229": {
-      "label": "Black Mesa",
-      "type": "Video Game"
-    },
-    "Q223629": {
-      "label": "Half-Life 2: Lost Coast",
-      "type": "Video Game"
-    },
-    "Q234870": {
-      "label": "optical disc",
-      "type": "Null"
-    },
-    "Q250221": {
-      "label": "Alyx Vance",
-      "type": "Video Game Character"
-    },
-    "Q269415": {
-      "label": "digital distribution",
-      "type": "Product Distribution Method"
-    },
-    "Q273140": {
-      "label": "gamepad",
-      "type": "Null"
-    },
-    "Q279744": {
-      "label": "Half-Life",
-      "type": "Video Game"
-    },
-    "Q281243": {
-      "label": "Eurogamer",
-      "type": "Video Game News Website"
-    },
-    "Q337535": {
-      "label": "Steam",
-      "type": "Video Game Distribution Platform"
-    },
-    "Q643572": {
-      "label": "Source",
-      "type": "Game Engine"
-    },
-    "Q752241": {
-      "label": "Half-Life",
-      "type": "Video Game Series"
-    },
-    "Q1043045": {
-      "label": "Ravenholm",
-      "type": "Fictional City"
-    },
-    "Q1076302": {
-      "label": "Isaac Kleiner",
-      "type": "Video Game Character"
-    },
-    "Q1079617": {
-      "label": "Wallace Breen",
-      "type": "Fictional Human"
-    },
-    "Q1145741": {
-      "label": "Black Mesa Research Facility",
-      "type": "Fictional Research Facility"
-    },
-    "Q1152245": {
-      "label": "City 17",
-      "type": "Fictional City"
-    },
-    "Q1154920": {
-      "label": "Father Grigori",
-      "type": "Video Game Character"
-    },
-    "Q1183879": {
-      "label": "Odessa Cubbage",
-      "type": "Video Game Character"
-    },
-    "Q1204108": {
-      "label": "Half-Life 2: Survivor",
-      "type": "Video Game"
-    },
-    "Q1205263": {
-      "label": "Eli Vance",
-      "type": "Fictional Human"
-    },
-    "Q1207078": {
-      "label": "Black Mesa East",
-      "type": "Fictional Research Facility"
-    },
-    "Q1207215": {
-      "label": "Judith Mossman",
-      "type": "Fictional Human"
-    },
-    "Q1209383": {
-      "label": "Barney Calhoun",
-      "type": "Video Game Character"
-    },
-    "Q1211818": {
-      "label": "Dog",
-      "type": "Video Game Character"
-    },
-    "Q1353553": {
-      "label": "Nova Prospekt",
-      "type": "Fictional Prison"
-    },
-    "Q2264873": {
-      "label": "Q2264873",
-      "type": "Video Game Developer"
-    },
-    "Q2521946": {
-      "label": "Marc Laidlaw",
-      "type": "Human"
-    },
-    "Q3194883": {
-      "label": "Kelly Bailey",
-      "type": "Human"
-    },
-    "Q8139731": {
-      "label": "G-Man",
-      "type": "Video Game Character"
-    },
-    "Q13414913": {
-      "label": "Simplified Chinese",
-      "type": "Writing System"
-    },
-    "Q16969671": {
-      "label": "British Academy Games Award for Best Game",
-      "type": "Video Game Award"
-    },
-    "Q18130932": {
-      "label": "Traditional Chinese",
-      "type": "Writing System"
-    },
-    "Q19650442": {
-      "label": "British Academy Games Award for Multiplayer",
-      "type": "Video Game Award"
-    },
-    "Q23901029": {
-      "label": "Dear Esther",
-      "type": "Video Game Mod"
-    },
-    "Q27670585": {
-      "label": "science fiction video game",
-      "type": "Video Game Theme"
-    },
-    "Q30634724": {
-      "label": "British Academy Games Award for Technical Achievement",
-      "type": "Video Game Award"
-    },
-    "Q54820071": {
-      "label": "digital download",
-      "type": "Data"
-    },
-    "Q62077203": {
-      "label": "unknown location",
-      "type": "Conservation State"
-    },
-    "Q62757821": {
-      "label": "British Academy Games Award for Artistic Achievement",
-      "type": "Video Game Award"
-    },
-    "Q97362369": {
-      "label": "Golden Joystick Awards \u2212 PC Game of the Year",
-      "type": "Video Game Award"
-    },
-    "Q104836696": {
-      "label": "Hunt Down the Freeman",
-      "type": "Video Game"
-    },
-    "Q109691143": {
-      "label": "Golden Joystick Awards \u2212 Ultimate Game of All Time",
-      "type": "Class Of Award"
-    },
-    "Q113174373": {
-      "label": "Half-Life 2: Update",
-      "type": "Video Game Mod"
-    },
-    "Q114834789": {
-      "label": "Entropy: Zero 2",
-      "type": "Video Game"
-    },
-    "Q115101598": {
-      "label": "post-apocalyptic video game",
-      "type": "Video Game Theme"
-    },
-    "Q116980731": {
-      "label": "British Academy Games Award for Animation",
-      "type": "Video Game Award"
-    },
-    "Q126488176": {
-      "label": "Lamarr",
-      "type": "Headcrab"
-    },
-    "Q129722891": {
-      "label": "science fiction horror",
-      "type": "Fiction Genre"
-    },
-    "Q132546394": {
-      "label": "British Academy Games Award for Action Game",
-      "type": "Video Game Award"
-    },
-    "Q132556366": {
-      "label": "British Academy Games Award for PC",
-      "type": "Video Game Award"
-    },
-    "Q132559320": {
-      "label": "Sunday Times Reader Award for Games",
-      "type": "Video Game Award"
+    "Q247": {
+      "label": "Volkswagen Golf",
+      "type": "Automobile Model Series"
+    },
+    "Q7318": {
+      "label": "Nazi Germany",
+      "type": "Historical Country"
+    },
+    "Q622618": {
+      "label": "Volkswagen New Beetle",
+      "type": "Automobile Model"
+    },
+    "Q713750": {
+      "label": "West Germany",
+      "type": "Historical Country"
+    },
+    "Q3231690": {
+      "label": "automobile model",
+      "type": "Type Of Manufactured Good"
+    },
+    "Q59773381": {
+      "label": "automobile model series",
+      "type": "Third-Order Class"
+    },
+    "Q2506904": {
+      "label": "Volkswagen Apollo",
+      "type": "Automobile Model"
     }
   },
   "edges": {
-    "Q193581": [
+    "Q247": [
       {
-        "target": "Q30",
-        "prop_id": "P495",
-        "prop_label": "Country Of Origin"
+        "Q119662": {
+          "prop_id": "P155",
+          "prop_label": "Http://Www.Wikidata.Org/Prop/Direct/P155"
+        }
       },
       {
-        "target": "Q94",
-        "prop_id": "P400",
-        "prop_label": "Platform"
-      },
-      {
-        "target": "Q150",
-        "prop_id": "P407",
-        "prop_label": "Language Of Work Or Name"
-      },
-      {
-        "target": "Q188",
-        "prop_id": "P407",
-        "prop_label": "Language Of Work Or Name"
-      },
-      {
-        "target": "Q250",
-        "prop_id": "P479",
-        "prop_label": "Input Device"
-      },
-      {
-        "target": "Q388",
-        "prop_id": "P400",
-        "prop_label": "Platform"
-      },
-      {
-        "target": "Q652",
-        "prop_id": "P407",
-        "prop_label": "Language Of Work Or Name"
-      },
-      {
-        "target": "Q809",
-        "prop_id": "P407",
-        "prop_label": "Language Of Work Or Name"
-      },
-      {
-        "target": "Q907",
-        "prop_id": "P674",
-        "prop_label": "Characters"
-      },
-      {
-        "target": "Q1321",
-        "prop_id": "P407",
-        "prop_label": "Language Of Work Or Name"
-      },
-      {
-        "target": "Q1406",
-        "prop_id": "P400",
-        "prop_label": "Platform"
-      },
-      {
-        "target": "Q1412",
-        "prop_id": "P407",
-        "prop_label": "Language Of Work Or Name"
-      },
-      {
-        "target": "Q1860",
-        "prop_id": "P407",
-        "prop_label": "Language Of Work Or Name"
-      },
-      {
-        "target": "Q2407",
-        "prop_id": "P277",
-        "prop_label": "Programmed In"
-      },
-      {
-        "target": "Q5146",
-        "prop_id": "P407",
-        "prop_label": "Language Of Work Or Name"
-      },
-      {
-        "target": "Q5287",
-        "prop_id": "P407",
-        "prop_label": "Language Of Work Or Name"
-      },
-      {
-        "target": "Q5294",
-        "prop_id": "P437",
-        "prop_label": "Distribution Format"
-      },
-      {
-        "target": "Q7411",
-        "prop_id": "P407",
-        "prop_label": "Language Of Work Or Name"
-      },
-      {
-        "target": "Q7737",
-        "prop_id": "P407",
-        "prop_label": "Language Of Work Or Name"
-      },
-      {
-        "target": "Q7889",
-        "prop_id": "P31",
-        "prop_label": "Instance Of"
-      },
-      {
-        "target": "Q7987",
-        "prop_id": "P479",
-        "prop_label": "Input Device"
-      },
-      {
-        "target": "Q9027",
-        "prop_id": "P407",
-        "prop_label": "Language Of Work Or Name"
-      },
-      {
-        "target": "Q9035",
-        "prop_id": "P407",
-        "prop_label": "Language Of Work Or Name"
-      },
-      {
-        "target": "Q9043",
-        "prop_id": "P407",
-        "prop_label": "Language Of Work Or Name"
-      },
-      {
-        "target": "Q9176",
-        "prop_id": "P407",
-        "prop_label": "Language Of Work Or Name"
-      },
-      {
-        "target": "Q9217",
-        "prop_id": "P407",
-        "prop_label": "Language Of Work Or Name"
-      },
-      {
-        "target": "Q10683",
-        "prop_id": "P400",
-        "prop_label": "Platform"
-      },
-      {
-        "target": "Q14116",
-        "prop_id": "P400",
-        "prop_label": "Platform"
-      },
-      {
-        "target": "Q18951",
-        "prop_id": "P156",
-        "prop_label": "Followed By"
-      },
-      {
-        "target": "Q27468",
-        "prop_id": "P840",
-        "prop_label": "Narrative Location"
-      },
-      {
-        "target": "Q34467",
-        "prop_id": "P437",
-        "prop_label": "Distribution Format"
-      },
-      {
-        "target": "Q45836",
-        "prop_id": "P1343",
-        "prop_label": "Described By Source"
-      },
-      {
-        "target": "Q48263",
-        "prop_id": "P400",
-        "prop_label": "Platform"
-      },
-      {
-        "target": "Q79576",
-        "prop_id": "P750",
-        "prop_label": "Distributed By"
-      },
-      {
-        "target": "Q132020",
-        "prop_id": "P400",
-        "prop_label": "Platform"
-      },
-      {
-        "target": "Q165970",
-        "prop_id": "P479",
-        "prop_label": "Input Device"
-      },
-      {
-        "target": "Q185029",
-        "prop_id": "P136",
-        "prop_label": "Genre"
-      },
-      {
-        "target": "Q193559",
-        "prop_id": "P123",
-        "prop_label": "Publisher"
-      },
-      {
-        "target": "Q207708",
-        "prop_id": "P1343",
-        "prop_label": "Described By Source"
-      },
-      {
-        "target": "Q208850",
-        "prop_id": "P404",
-        "prop_label": "Game Mode"
-      },
-      {
-        "target": "Q211229",
-        "prop_id": "P4969",
-        "prop_label": "Derivative Work"
-      },
-      {
-        "target": "Q223629",
-        "prop_id": "P156",
-        "prop_label": "Followed By"
-      },
+        "Q152946": {
+          "prop_id": "P155",
+          "prop_label": "Http://Www.Wikidata.Org/Prop/Direct/P155"
+        }
+      }
+    ],
+    "Q152946": [
       {
-        "target": "Q234870",
-        "prop_id": "P437",
-        "prop_label": "Distribution Format"
+        "Q183": {
+          "prop_id": "P495",
+          "prop_label": "Http://Www.Wikidata.Org/Prop/Direct/P495"
+        }
       },
       {
-        "target": "Q250221",
-        "prop_id": "P674",
-        "prop_label": "Characters"
+        "Q247": {
+          "prop_id": "P156",
+          "prop_label": "Http://Www.Wikidata.Org/Prop/Direct/P156"
+        }
       },
       {
-        "target": "Q269415",
-        "prop_id": "P437",
-        "prop_label": "Distribution Format"
+        "Q7318": {
+          "prop_id": "P495",
+          "prop_label": "Http://Www.Wikidata.Org/Prop/Direct/P495"
+        }
       },
       {
-        "target": "Q273140",
-        "prop_id": "P479",
-        "prop_label": "Input Device"
+        "Q622618": {
+          "prop_id": "P156",
+          "prop_label": "Http://Www.Wikidata.Org/Prop/Direct/P156"
+        }
       },
       {
-        "target": "Q279744",
-        "prop_id": "P155",
-        "prop_label": "Follows"
+        "Q713750": {
+          "prop_id": "P495",
+          "prop_label": "Http://Www.Wikidata.Org/Prop/Direct/P495"
+        }
       },
       {
-        "target": "Q281243",
-        "prop_id": "P1343",
-        "prop_label": "Described By Source"
+        "Q3231690": {
+          "prop_id": "P31",
+          "prop_label": "Http://Www.Wikidata.Org/Prop/Direct/P31"
+        }
       },
       {
-        "target": "Q337535",
-        "prop_id": "P750",
-        "prop_label": "Distributed By"
-      },
-      {
-        "target": "Q643572",
-        "prop_id": "P408",
-        "prop_label": "Software Engine"
-      },
-      {
-        "target": "Q752241",
-        "prop_id": "P179",
-        "prop_label": "Part Of The Series"
-      },
-      {
-        "target": "Q1043045",
-        "prop_id": "P840",
-        "prop_label": "Narrative Location"
-      },
-      {
-        "target": "Q1076302",
-        "prop_id": "P674",
-        "prop_label": "Characters"
-      },
-      {
-        "target": "Q1079617",
-        "prop_id": "P674",
-        "prop_label": "Characters"
-      },
-      {
-        "target": "Q1145741",
-        "prop_id": "P840",
-        "prop_label": "Narrative Location"
-      },
-      {
-        "target": "Q1152245",
-        "prop_id": "P840",
-        "prop_label": "Narrative Location"
-      },
-      {
-        "target": "Q1154920",
-        "prop_id": "P674",
-        "prop_label": "Characters"
-      },
-      {
-        "target": "Q1183879",
-        "prop_id": "P674",
-        "prop_label": "Characters"
-      },
-      {
-        "target": "Q1204108",
-        "prop_id": "P4969",
-        "prop_label": "Derivative Work"
-      },
-      {
-        "target": "Q1205263",
-        "prop_id": "P674",
-        "prop_label": "Characters"
-      },
-      {
-        "target": "Q1207078",
-        "prop_id": "P840",
-        "prop_label": "Narrative Location"
-      },
-      {
-        "target": "Q1207215",
-        "prop_id": "P674",
-        "prop_label": "Characters"
-      },
-      {
-        "target": "Q1209383",
-        "prop_id": "P674",
-        "prop_label": "Characters"
-      },
-      {
-        "target": "Q1211818",
-        "prop_id": "P674",
-        "prop_label": "Characters"
-      },
-      {
-        "target": "Q1353553",
-        "prop_id": "P840",
-        "prop_label": "Narrative Location"
-      },
-      {
-        "target": "Q2264873",
-        "prop_id": "P750",
-        "prop_label": "Distributed By"
-      },
-      {
-        "target": "Q2521946",
-        "prop_id": "P58",
-        "prop_label": "Screenwriter"
-      },
-      {
-        "target": "Q3194883",
-        "prop_id": "P86",
-        "prop_label": "Composer"
-      },
-      {
-        "target": "Q8139731",
-        "prop_id": "P674",
-        "prop_label": "Characters"
-      },
-      {
-        "target": "Q13414913",
-        "prop_id": "P407",
-        "prop_label": "Language Of Work Or Name"
-      },
-      {
-        "target": "Q16969671",
-        "prop_id": "P166",
-        "prop_label": "Award Received"
-      },
-      {
-        "target": "Q18130932",
-        "prop_id": "P407",
-        "prop_label": "Language Of Work Or Name"
-      },
-      {
-        "target": "Q19650442",
-        "prop_id": "P166",
-        "prop_label": "Award Received"
-      },
-      {
-        "target": "Q23901029",
-        "prop_id": "P4969",
-        "prop_label": "Derivative Work"
-      },
-      {
-        "target": "Q27670585",
-        "prop_id": "P136",
-        "prop_label": "Genre"
-      },
-      {
-        "target": "Q30634724",
-        "prop_id": "P1411",
-        "prop_label": "Nominated For"
-      },
-      {
-        "target": "Q54820071",
-        "prop_id": "P437",
-        "prop_label": "Distribution Format"
-      },
-      {
-        "target": "Q62077203",
-        "prop_id": "P840",
-        "prop_label": "Narrative Location"
-      },
-      {
-        "target": "Q62757821",
-        "prop_id": "P166",
-        "prop_label": "Award Received"
-      },
-      {
-        "target": "Q97362369",
-        "prop_id": "P166",
-        "prop_label": "Award Received"
-      },
-      {
-        "target": "Q104836696",
-        "prop_id": "P4969",
-        "prop_label": "Derivative Work"
-      },
-      {
-        "target": "Q109691143",
-        "prop_id": "P1411",
-        "prop_label": "Nominated For"
-      },
-      {
-        "target": "Q113174373",
-        "prop_id": "P4969",
-        "prop_label": "Derivative Work"
-      },
-      {
-        "target": "Q114834789",
-        "prop_id": "P4969",
-        "prop_label": "Derivative Work"
-      },
-      {
-        "target": "Q115101598",
-        "prop_id": "P136",
-        "prop_label": "Genre"
-      },
-      {
-        "target": "Q116980731",
-        "prop_id": "P166",
-        "prop_label": "Award Received"
-      },
-      {
-        "target": "Q126488176",
-        "prop_id": "P674",
-        "prop_label": "Characters"
-      },
-      {
-        "target": "Q129722891",
-        "prop_id": "P136",
-        "prop_label": "Genre"
-      },
-      {
-        "target": "Q132546394",
-        "prop_id": "P166",
-        "prop_label": "Award Received"
-      },
+        "Q59773381": {
+          "prop_id": "P31",
+          "prop_label": "Http://Www.Wikidata.Org/Prop/Direct/P31"
+        }
+      }
+    ],
+    "Q119662": [
       {
-        "target": "Q132556366",
-        "prop_id": "P166",
-        "prop_label": "Award Received"
+        "Q2506904": {
+          "prop_id": "P155",
+          "prop_label": "Http://Www.Wikidata.Org/Prop/Direct/P155"
+        }
       },
       {
-        "target": "Q132559320",
-        "prop_id": "P1411",
-        "prop_label": "Nominated For"
+        "Q3231690": {
+          "prop_id": "P31",
+          "prop_label": "Http://Www.Wikidata.Org/Prop/Direct/P31"
+        }
       }
     ]
   }
