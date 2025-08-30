@@ -1,6 +1,4 @@
-from Graph import Graph
-from paths import DATA_PATH
-
+from WikiGraph_Manager import WikiGraph_Manager
 
 def main():
     QIDS = [
@@ -27,18 +25,8 @@ def main():
     "Q42",          # Douglas Adams (duplicate for testing)
     "Q42",          
 ]
-    
-    graph = Graph()
-    i = 0
-    limit = 0
-    for QID in QIDS:
-        if i > limit:
-            break
-        graph.expand_graph(QID, maxDepth=2)
-        i += 1
-        print(i)
-    graph.save_to_json(DATA_PATH)
-    print(len(graph.vertices))
-
+    manager = WikiGraph_Manager()
+    manager.build(QIDS[0], 2)
+    manager.save_all()
 
 main()
