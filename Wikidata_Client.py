@@ -65,7 +65,7 @@ class Wikidata_Client:
             results_raw = self.__execute_query(query)
             results = results_raw["results"]["bindings"]
             for e_id, result in zip(batch, results):
-                entity_data.add((e_id, result["entityLabel"]["value"]))
+                entity_data.add((e_id, result["entityLabel"]["value"].title()))
         return entity_data
             
         
