@@ -1,2 +1,2 @@
 # Wikidata-to-Entity-Graph
-Builds a graph data structure JSON from any Wikipedia page
+Builds a graph entity relationship data structure JSONs from any Wikipedia page
