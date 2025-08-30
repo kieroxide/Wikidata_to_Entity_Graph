@@ -25,6 +25,27 @@ class Wikidata_Client:
                     return None
                 sleep(1)
 
+    def get_entity_data(self, entity_ids):
+        """Returns a set of tuples of entity ids and labels"""
+        entity_data = set()
+
+        values_clause = " ".join(f"wd:{qid}" for qid in entity_ids)
+        query = f"""
+        SELECT ?entity ?entityLabel WHERE {{
+          VALUES ?entity {{ {values_clause} }}
+          SERVICE wikibase:label {{ bd:serviceParam wikibase:language "en". }}
+        }}
+        """
+        
+        results_raw = self.__execute_query(query)
+        results = results_raw["results"]["bindings"]
+        for e_id, result in zip(entity_ids, results):
+            entity_data.add((e_id, result["entityLabel"]["value"]))
+
+        return entity_data
+            
+        
+
     def get_entity_relations(self, entity_ids: list[str], property_limit: int = 100):
         """Returns up to {limit} triples (source QID, property PID, target QID) 
         for a list of QIDs as a set"""
