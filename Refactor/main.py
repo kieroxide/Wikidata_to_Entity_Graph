@@ -1,4 +1,4 @@
-from Wikidata_Client import Wikidata_Client
+from Entity_Crawler import Entity_Crawler
 
 def main():
     QIDS = [
@@ -25,8 +25,10 @@ def main():
     "Q42",          # Douglas Adams (duplicate for testing)
     "Q42",          
 ]
-    wikidata_client = Wikidata_Client()
-    relations = wikidata_client.get_entity_relations(QIDS[0])
-    print(relations)
+    wiki_crawler = Entity_Crawler()
+    wiki_crawler.crawl_wiki(QIDS[0], crawl_depth=3)
+    
+    print(wiki_crawler.entity_ids)
+    print(wiki_crawler.relations)
 
 main()

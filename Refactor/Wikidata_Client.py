@@ -6,7 +6,7 @@ class Wikidata_Client:
     def __init__(self):
         pass
 
-    def execute_query(self, query):
+    def __execute_query(self, query):
         """Takes a sparql query for wikidata and executes it"""
         attempts = 0
         while True:
@@ -17,14 +17,43 @@ class Wikidata_Client:
                 sparql.setQuery(query)
                 results = sparql.query().convert()
                 return results
-            except:
+            except Exception as e:
                 attempts += 1
                 if attempts >= 5:
                     print(f"Number of Attempts exceeded for {query}")
+                    print(f"Error {e}")
                     return None
                 sleep(1)
 
-    def get_entity_relations(self, entity_id: str, property_limit: str = 10):
+    def get_entities_relations(self, entity_ids: list[str], property_limit: int = 100):
+        """Returns up to {limit} triples (source QID, property PID, target QID) 
+        for a list of QIDs as a set"""
+
+        relationships = set()
+        
+        values_clause = " ".join([f"wd:{eid}" for eid in entity_ids])
+        query = f"""
+            SELECT ?source ?property ?target WHERE {{
+              VALUES ?source {{ {values_clause} }}
+              ?source ?property ?target .
+              FILTER(STRSTARTS(STR(?target), "http://www.wikidata.org/entity/Q"))
+            }} LIMIT {property_limit}
+        """
+
+        data = self.__execute_query(query)
+        if not data:
+            return relationships
+
+        for result in data["results"]["bindings"]:
+            source_id = result["source"]["value"].split("/").pop()
+            property_id = result["property"]["value"].split("/").pop()
+            target_id = result["target"]["value"].split("/").pop()
+            relationships.add((source_id, property_id, target_id))
+
+        return relationships
+
+
+    def get_entity_relations(self, entity_id: str, property_limit: str = 100):
         """Returns up to {limit} triples (property PID, target QID) from a source QID as a set"""
         relationships = set()
 
@@ -34,7 +63,7 @@ class Wikidata_Client:
                     FILTER(STRSTARTS(STR(?target), "http://www.wikidata.org/entity/Q")) 
                 }} LIMIT {property_limit}"""
         
-        data = self.execute_query(query)
+        data = self.__execute_query(query)
         # Returns empty set if wikidata fetch was no successful
         if not data:
             return relationships
