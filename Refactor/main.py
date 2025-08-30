@@ -25,8 +25,8 @@ def main():
     "Q42",          # Douglas Adams (duplicate for testing)
     "Q42",          
 ]
-    manger = WikiGraph_Manager()
-    manger.build(QIDS[0], 2)
-    manger.save_all()
+    manager = WikiGraph_Manager()
+    manager.build(QIDS[0], 2)
+    manager.save_all()
 
 main()
