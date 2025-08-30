@@ -1,4 +1,4 @@
-from Entity_Crawler import Entity_Crawler
+from WikiGraph_Manager import WikiGraph_Manager
 
 def main():
     QIDS = [
@@ -25,10 +25,8 @@ def main():
     "Q42",          # Douglas Adams (duplicate for testing)
     "Q42",          
 ]
-    wiki_crawler = Entity_Crawler()
-    wiki_crawler.crawl_wiki(QIDS[0], crawl_depth=3)
-    
-    print(wiki_crawler.entity_ids)
-    print(wiki_crawler.relations)
+    manger = WikiGraph_Manager()
+    manger.build(QIDS[0], 2)
+    manger.save_all()
 
 main()
