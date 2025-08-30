@@ -24,7 +24,26 @@ class Wikidata_Client:
                     print(f"Error {e}")
                     return None
                 sleep(1)
+                
+    def get_property_data(self, property_ids):
+        """Returns a set of tuples of property ids and labels"""
+        property_data = set()
 
+        values_clause = " ".join(f"wd:{pid}" for pid in property_ids)
+        query = f"""
+        SELECT ?property ?propertyLabel WHERE {{
+            VALUES ?property {{ { values_clause } }}
+            SERVICE wikibase:label {{ bd:serviceParam wikibase:language 'en'. }}
+        }}
+        """
+
+        results_raw = self.__execute_query(query)
+        results = results_raw["results"]["bindings"]
+        for pid, result in zip(property_ids, results):
+            property_data.add((pid, result["propertyLabel"]["value"].title()))
+
+        return property_data
+    
     def get_entity_data(self, entity_ids):
         """Returns a set of tuples of entity ids and labels"""
         entity_data = set()
@@ -36,7 +55,7 @@ class Wikidata_Client:
           SERVICE wikibase:label {{ bd:serviceParam wikibase:language "en". }}
         }}
         """
-        
+
         results_raw = self.__execute_query(query)
         results = results_raw["results"]["bindings"]
         for e_id, result in zip(entity_ids, results):
