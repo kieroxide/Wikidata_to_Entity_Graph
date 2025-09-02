@@ -22,7 +22,7 @@ class Data_Handler:
         self.relations = self.read_file(self.relations_path)
     
     def fetch_relations_data(self, entity_ids, property_ids, relations):
-        """Fetch data (only labels right now) for given entities and properties, and format relations."""
+        """Fetch data for given entities and properties, and format relations."""
         # Filter out already known IDs
         new_entity_ids = entity_ids - {id for id in self.entities.keys()}
         new_property_ids = property_ids - {id for id in self.properties.keys()}
