@@ -23,6 +23,9 @@ class Data_Handler:
     
     def change_json_dir(self, dir_path):
         self.__jsonDir = self.project_root / dir_path
+        self.entity_path = self.__jsonDir / "entities.json"
+        self.property_path = self.__jsonDir / "properties.json"
+        self.relations_path = self.__jsonDir / "relations.json"
     
     def fetch_relations_data(self, entity_ids, property_ids, relations):
         """Fetch data for given entities and properties, and format relations."""
