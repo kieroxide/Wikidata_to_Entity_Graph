@@ -11,8 +11,8 @@ class Data_Handler:
         self.properties = {}
         self.relations = {}
 
-        project_root = Path(__file__).parent.parent
-        self.__jsonDir = project_root / "json"
+        self.project_root = Path(__file__).parent.parent
+        self.__jsonDir = self.project_root / "json"
         self.entity_path = self.__jsonDir / "entities.json"
         self.property_path = self.__jsonDir / "properties.json"
         self.relations_path = self.__jsonDir / "relations.json"
@@ -20,6 +20,9 @@ class Data_Handler:
         self.entities = self.read_file(self.entity_path)
         self.properties = self.read_file(self.property_path)
         self.relations = self.read_file(self.relations_path)
+    
+    def change_json_dir(self, dir_path):
+        self.__jsonDir = self.project_root / dir_path
     
     def fetch_relations_data(self, entity_ids, property_ids, relations):
         """Fetch data for given entities and properties, and format relations."""
@@ -39,19 +42,19 @@ class Data_Handler:
         new_relations = self.__convert_relations_to_dict(relations)
         self.relations.update(new_relations)
         
-    def save_all(self):
+    def save_all(self, json_dir=""):
         """
         Save all collected data (relations, entities, properties) to JSON files.
         Uses internal paths defined in self.__entity_path, self.__property_path, and self.__relations_path.
         """
         if self.relations:
-            self.__save_to_file(self.relations, self.relations_path)
+            self.__save_to_file(self.relations, self.relations_path, json_dir)
         if self.entities:
-            self.__save_to_file(self.entities, self.entity_path)
+            self.__save_to_file(self.entities, self.entity_path, json_dir)
         if self.properties:
-            self.__save_to_file(self.properties, self.property_path)
+            self.__save_to_file(self.properties, self.property_path, json_dir)
 
-    def __save_to_file(self, obj, PATH, mode="w"):
+    def __save_to_file(self, obj, PATH, json_dir, mode="w"):
         """Save a dictionary to a JSON file, creating the directory if needed."""
         self.__jsonDir.mkdir(exist_ok=True)
         

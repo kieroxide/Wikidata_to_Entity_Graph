@@ -20,9 +20,9 @@ class WikiGraph_Manager:
             self.entity_crawler.property_ids, 
             self.entity_crawler.relations)
     
-    def save_all(self):
+    def save_all(self, json_path=""):
         """ Saves all gathered data to json files"""
-        self.data_handler.save_all()
+        self.data_handler.save_all(json_path)
     
     def test_clean_results(self):
         self.tester.clean_data(self.data_handler)
@@ -30,3 +30,6 @@ class WikiGraph_Manager:
     def test_results(self, console=False):
         self.tester.test_entity_labels(self.data_handler, console)
         self.tester.test_relations(self.data_handler, console)
+
+    def change_json_dir(self, json_dir):
+        self.data_handler.change_json_dir(json_dir)
