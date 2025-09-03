@@ -1,12 +1,12 @@
-from py.Wikidata_Client import Wikidata_Client
-from py.Data_Handler import Data_Handler
+from .Wikidata_Client import Wikidata_Client
+from .Data_Handler import Data_Handler
 
 class Entity_Crawler:
     """Crawls Wikidata starting from a root entity to collect entity-to-entity relations."""
     def __init__(self, data_handler: Data_Handler):
         self.wiki_client = Wikidata_Client()
-        self.entity_ids = {id for id in data_handler.entities.keys()}
-        self.property_ids = {id for id in data_handler.properties.keys()}
+        self.entity_ids = {id for id in data_handler.cached_entities.keys()}
+        self.property_ids = {id for id in data_handler.cached_properties.keys()}
         self.relations = set()
 
     def __str__(self):
@@ -17,23 +17,17 @@ class Entity_Crawler:
         }
         return str(data)
 
-    def crawl_wiki(self, root_entity_id , crawl_depth = 0):
+    def crawl_wiki(self, root_entity_id , crawl_depth = 0, relation_limit=5):
         """Crawls Wikidata starting from a root entity, collecting relations and expanding to 
         newly discovered entities up to a specified depth."""
-        
-        # If we have existing entities, start from all of them for deeper searches
-        if self.entity_ids:
-            print(f"Resuming crawl with {len(self.entity_ids)} existing entities")
-            current_ids = self.entity_ids.copy()  # Start from ALL existing entities
-        else:
-            current_ids = {root_entity_id}  # Fresh start
-            self.entity_ids.add(root_entity_id)
 
+        current_ids = {root_entity_id}  # Fresh start
+        self.entity_ids.add(root_entity_id)
         
         for _ in range(0, crawl_depth + 1): # Add one for initial crawl
             if not current_ids: break
             
-            relations = self.wiki_client.get_entity_relations(current_ids)
+            relations = self.wiki_client.get_entity_relations(current_ids, relation_limit)
             self.relations.update(relations)
 
             # Fake enums for clarity accessing tuple
