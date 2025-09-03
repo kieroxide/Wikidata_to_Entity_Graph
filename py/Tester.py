@@ -1,15 +1,15 @@
-from py.Data_Handler import Data_Handler
-
 class Tester:
-    def clean_data(self, dh: Data_Handler):
-        no_label_entities = self.test_entity_labels(dh)
+    def clean_data(self, entities: dict, properties: dict, relations: dict, console=False):
+        """Combs through data culling any incombatible data, Currently properties are not touched
+        as I have come across no errors"""
+
+        no_label_entities = self.test_entity_labels(entities, console)
         
         for no_label_entity in no_label_entities:
-            dh.entities.pop(no_label_entity, None)
+            entities.pop(no_label_entity, None)
 
-        non_mapped_ids = self.test_relations(dh)
+        non_mapped_ids = self.test_relations(entities, relations, console)
 
-        relations = dh.relations
         cleaned_relations = {}
         for source, relation in relations.items():
             if source in non_mapped_ids:
@@ -24,13 +24,10 @@ class Tester:
             if cleaned_relation:
                 cleaned_relations[source] = cleaned_relation
         
-        dh.relations = cleaned_relations
-        dh.save_all()
+        relations = cleaned_relations
+        return entities, properties, relations
         
-        
-
-    def test_entity_labels(self, data_handler: Data_Handler, console=False):
-        entities = data_handler.entities
+    def test_entity_labels(self, entities, console=False):
         if not entities:
             return set()
         
@@ -63,10 +60,7 @@ class Tester:
             print("Entity test passed!")
         return set()
 
-    def test_relations(self, data_handler: Data_Handler, console=False):
-        relations = data_handler.relations
-        entities = data_handler.entities
-
+    def test_relations(self, entities, relations, console=False):
         all_ids = set()
         for source_id, relation in relations.items():
             all_ids.add(source_id)
