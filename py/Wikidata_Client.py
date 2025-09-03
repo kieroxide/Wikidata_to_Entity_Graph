@@ -4,7 +4,7 @@ from time import sleep
 # Configuration constants
 DEFAULT_BATCH_SIZE = 50
 MAX_QUERY_ATTEMPTS = 3
-PROPERTY_LIMIT = 100
+RELATION_LIMIT = 100
 WIKIDATA_ENDPOINT = "https://query.wikidata.org/sparql"
 RETRY_DELAY = 1        
 
@@ -98,7 +98,7 @@ class Wikidata_Client:
                 print(f"Error {e}")
                 sleep(RETRY_DELAY)
                 
-    def get_property_data(self, property_ids):
+    def get_property_data(self, property_ids) -> dict:
         """Returns a set of tuples of property ids and labels"""
         property_data = dict()
         for batch in (self.batch_ids(property_ids)):
@@ -119,7 +119,7 @@ class Wikidata_Client:
 
         return property_data
     
-    def get_entity_data(self, entity_ids, raw=False):
+    def get_entity_data(self, entity_ids, raw=False) -> dict:
         """Returns a dict of entity ids -> labels, type"""
         entity_data = dict()
         for batch in (self.batch_ids(entity_ids)):
@@ -155,11 +155,12 @@ class Wikidata_Client:
 
         return entity_data
             
-    def get_entity_relations(self, entity_ids: list[str], property_limit: int = PROPERTY_LIMIT):
+    def get_entity_relations(self, entity_ids: list[str], relation_limit: int = RELATION_LIMIT):
         """Returns up to {limit} triples (source QID, property PID, target QID) 
         for a list of QIDs as a set"""
         relationships = set()
         useful_types_str = " ".join([f"wd:{qid}" for qid in USEFUL_ENTITY_TYPES])
+        
         for batch in self.batch_ids(entity_ids, 100):
             values_clause = " ".join([f"wd:{eid}" for eid in batch])
             query = f"""
@@ -171,7 +172,7 @@ class Wikidata_Client:
                     FILTER(STRSTARTS(STR(?target), "http://www.wikidata.org/entity/Q"))
                     FILTER(STRSTARTS(STR(?property), "http://www.wikidata.org/prop/direct/"))
                 }} 
-                LIMIT {property_limit}
+                LIMIT {relation_limit}
             """
 
             data = self.__execute_query(query)
