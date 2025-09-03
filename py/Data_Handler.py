@@ -58,7 +58,7 @@ class Data_Handler:
         # Convert and merge relations
         new_relations = self.__convert_relations_to_dict(relations)
         
-        # Removes bad data
+        # Removes bad data however does clean already cleaned cached data but thats fine
         new_entities, new_properties, new_relations = self.tester.clean_data(new_entities, new_properties, new_relations)
         
         # Update cache with new data
