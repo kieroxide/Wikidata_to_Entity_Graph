@@ -155,19 +155,18 @@ class Wikidata_Client:
 
         return entity_data
             
-    def get_entity_relations(self, entity_ids: list[str], relation_limit: int = RELATION_LIMIT):
+    def get_entity_relations(self, entity_ids: list[str], relation_limit: int = RELATION_LIMIT, _filter=False):
         """Returns up to {limit} triples (source QID, property PID, target QID) 
         for a list of QIDs as a set"""
         relationships = set()
         useful_types_str = " ".join([f"wd:{qid}" for qid in USEFUL_ENTITY_TYPES])
-        
         for batch in self.batch_ids(entity_ids, 100):
             values_clause = " ".join([f"wd:{eid}" for eid in batch])
-            query = f"""
-                SELECT DISTINCT ?source ?property ?target WHERE {{
-                    VALUES ?source {{ {values_clause} }}
-                    VALUES ?targetType {{ { useful_types_str } }}
-                    ?source ?property ?target .
+            query = f"""SELECT DISTINCT ?source ?property ?target WHERE {{
+                    VALUES ?source {{ {values_clause} }}"""
+            if _filter:
+                query += "\n" + f"VALUES ?targetType {{ { useful_types_str } }}"
+            query += f"""?source ?property ?target .
                     ?target wdt:P31 ?targetType .
                     FILTER(STRSTARTS(STR(?target), "http://www.wikidata.org/entity/Q"))
                     FILTER(STRSTARTS(STR(?property), "http://www.wikidata.org/prop/direct/"))
