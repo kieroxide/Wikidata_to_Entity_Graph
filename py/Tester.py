@@ -8,7 +8,7 @@ class Tester:
         for no_label_entity in no_label_entities:
             entities.pop(no_label_entity, None)
 
-        no_label_properties = self.test_property_labels(properties)
+        no_label_properties = self.test_property_labels(properties, True)
         non_mapped_ids = self.test_relations(entities, relations, console)
 
         cleaned_relations = {}
@@ -17,7 +17,7 @@ class Tester:
                 continue
             cleaned_relation = {}
             for prop_id, target_ids in relation.items():
-                if prop_id in no_label_properties:
+                if prop_id in no_label_properties or prop_id not in properties.keys():
                     continue
                 kept_targets = [t for t in target_ids if t not in non_mapped_ids]
                 if kept_targets:
