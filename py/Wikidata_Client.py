@@ -155,7 +155,7 @@ class Wikidata_Client:
 
         return entity_data
             
-    def get_entity_relations(self, entity_ids: list[str], relation_limit: int = RELATION_LIMIT, _filter=False):
+    def get_entity_relations(self, entity_ids: list[str], relation_limit: int = RELATION_LIMIT, _filter=True):
         """Returns up to {limit} triples (source QID, property PID, target QID) 
         for a list of QIDs as a set"""
         relationships = set()
