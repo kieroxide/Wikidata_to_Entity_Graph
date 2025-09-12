@@ -8,15 +8,17 @@ class Tester:
         for no_label_entity in no_label_entities:
             entities.pop(no_label_entity, None)
 
+        no_label_properties = self.test_property_labels(properties)
         non_mapped_ids = self.test_relations(entities, relations, console)
 
         cleaned_relations = {}
         for source, relation in relations.items():
             if source in non_mapped_ids:
                 continue
-
             cleaned_relation = {}
             for prop_id, target_ids in relation.items():
+                if prop_id in no_label_properties:
+                    continue
                 kept_targets = [t for t in target_ids if t not in non_mapped_ids]
                 if kept_targets:
                     cleaned_relation[prop_id] = kept_targets
@@ -59,7 +61,38 @@ class Tester:
         if console:
             print("Entity test passed!")
         return set()
+    
+    def test_property_labels(self, properties, console=False):
+        if not properties:
+            return set()
+        
+        no_label_ids = set()
+        incorrect_format_entities = set()
+        
+        for prop_id, prop_label in properties.items():
+            
+            # Tests for unknown label entities
+            if prop_id == prop_label:
+                no_label_ids.add(prop_id)
 
+            # Tests for incorrect format of data
+            if not isinstance(prop_label, str) or prop_label != prop_label.title():
+                incorrect_format_entities.add(prop_id)
+        
+        if no_label_ids:
+            if console:
+                print(f"Label Test Failed: {no_label_ids}")
+            return no_label_ids
+
+        if incorrect_format_entities:
+            if console:
+                print(f"Incorrect formatting on labels: {incorrect_format_entities}")
+            return incorrect_format_entities
+
+        if console:
+            print("Entity test passed!")
+        return set()
+        
     def test_relations(self, entities, relations, console=False):
         all_ids = set()
         for source_id, relation in relations.items():
