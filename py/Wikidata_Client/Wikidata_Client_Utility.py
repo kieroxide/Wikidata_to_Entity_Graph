@@ -1,7 +1,6 @@
 import hashlib
 import urllib.parse
 from urllib.parse import urlparse, unquote
-from .Black_List import BLACKLISTED_ENTITY_TYPES
 
 def parseRelationsPayload(relationships, results):
     for result in results.get("results", {}).get("bindings", {}):
@@ -27,7 +26,6 @@ def parsePropertyPayload(property_data, results):
 
 
 def parseEntityPayload(entities, results):
-
     for result in results:
         # Entity id and label gets
         e_id = result.get("entity", {}).get("value", "").split("/")[-1]
@@ -39,6 +37,7 @@ def parseEntityPayload(entities, results):
         if "xml:lang" in label:
             label = label["value"]
         
+        # Local functions just for quick filtering
         def isWikiMetaData(label: str):
             lower_label = label.lower()
             if "wiki" in lower_label and "wikipedia" != lower_label:
