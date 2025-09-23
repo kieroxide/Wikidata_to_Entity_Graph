@@ -38,11 +38,28 @@ def parseEntityPayload(entities, results):
         label: str = result.get("entityLabel", {}).get("value", e_id)
         if "xml:lang" in label:
             label = label["value"]
-            
-        if "Encyclopedia" in label.capitalize() or "Dictionary" in label.capitalize():
+        
+        def isWikiMetaData(label: str):
+            lower_label = label.lower()
+            if "wiki" in lower_label and "wikipedia" != lower_label:
+                return True
+            return False
+        
+        def isDictOrEnc(label: str):
+            lower_label = label.lower()
+            if "encyclopedia" in lower_label or "dictionary" in lower_label:
+                return True
+            return False
+        
+        if isWikiMetaData(label) or isDictOrEnc(label):
             continue
+
         # Entity Type data
         type: str = result.get("mainTypeLabel", {}).get("value", "Unknown Type")
+        
+        if isWikiMetaData(type) or isDictOrEnc(type):
+            continue
+
         # Entity image data
         img = result.get("mainImage", {}).get("value", "")
         thumb_url = ""
