@@ -1,6 +1,6 @@
 from .Entity_Crawler import Entity_Crawler
 from .Data_Handler import Data_Handler
-from .Tester import Tester
+from .Cleaner.Cleaner import Cleaner
 
 class WikiGraph_Manager:
     """ Manages the process of building a Wikidata entity graph. """
@@ -8,7 +8,6 @@ class WikiGraph_Manager:
     def __init__(self):
         self.data_handler = Data_Handler()
         self.entity_crawler = Entity_Crawler(self.data_handler)
-        self.tester = Tester()
 
     def build(self, source_id, depth=1, relation_limit = 5 ,raw=False):
         """ Crawls Wikidata starting from `source_id` up to `depth` levels
@@ -25,11 +24,11 @@ class WikiGraph_Manager:
         self.data_handler.save_all()
     
     def test_clean_results(self, entities, properties, relations):
-        self.tester.clean_data(entities, properties, relations)
+        Cleaner.clean_data(entities, properties, relations)
 
     def test_results(self, console=False):
-        self.tester.test_entity_labels(self.data_handler, console)
-        self.tester.test_relations(self.data_handler, console)
+        Cleaner.find_no_label_entities(self.data_handler, console)
+        Cleaner.find_unreferenced_entities(self.data_handler, console)
 
     def change_json_dir(self, json_dir):
         self.data_handler.change_json_dir(json_dir)
