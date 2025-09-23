@@ -29,9 +29,10 @@ class WikiGraphServer:
         try:
             depth = request.args.get('depth', 1, type=int)
             relation_limit = request.args.get('relation_limit', 5, type=int)
-            entities, properties, relations = self.manager.build(entity_id, depth, relation_limit)
+            manager = WikiGraph_Manager()
+            entities, properties, relations = manager.build(entity_id, depth, relation_limit)
 
-            self.manager.save_all() # long-term cache will change to sql eventually
+            manager.save_all() # long-term cache will change to sql eventually
             return jsonify({"status"    : "ok",
                             "data"      :{
                                 "entities"  : entities,
