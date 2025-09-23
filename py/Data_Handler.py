@@ -1,5 +1,5 @@
-from .Wikidata_Client import Wikidata_Client
-from .Tester import Tester
+from .Wikidata_Client.Wikidata_Client import Wikidata_Client
+from .Cleaner.Cleaner import Cleaner
 import json
 from pathlib import Path
 import os
@@ -19,8 +19,6 @@ class Data_Handler:
         self.cached_entities = self.read_file(self.entity_path)
         self.cached_properties = self.read_file(self.property_path)
         self.cached_relations = self.read_file(self.relations_path)
-
-        self.tester = Tester()
 
     def change_json_dir(self, dir_path):
         """Function to allow change of where data jsons will be saved"""
@@ -59,7 +57,7 @@ class Data_Handler:
         new_relations = self.__convert_relations_to_dict(relations)
         
         # Removes bad data however does clean already cleaned cached data but thats fine
-        new_entities, new_properties, new_relations = self.tester.clean_data(new_entities, new_properties, new_relations)
+        new_entities, new_properties, new_relations = Cleaner.clean_data(new_entities, new_properties, new_relations)
         
         # Update cache with new data
         self.cached_entities.update(new_entities)
