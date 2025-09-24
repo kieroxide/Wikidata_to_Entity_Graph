@@ -18,7 +18,9 @@ class Cleaner:
 
         # We dont remove edges with no-label as too restrictive
         no_label_properties = Cleaner.find_no_label_properties(properties, console)
-        
+        for label in no_label_properties:
+            properties.pop(label, None)
+            
         unreferenced_entity_ids = Cleaner.find_unreferenced_entities(entities, relations, console)
 
         #no need to cull relations as this is done in frontend
