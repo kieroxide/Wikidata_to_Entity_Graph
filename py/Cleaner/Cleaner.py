@@ -16,18 +16,13 @@ class Cleaner:
         for no_label_entity in no_label_entities:
             entities.pop(no_label_entity, None)
 
-        # We dont remove edges with no-label as too restrictive
+        # Remove properties with no labels
         no_label_properties = Cleaner.find_no_label_properties(properties, console)
         for label in no_label_properties:
             properties.pop(label, None)
             
-        unreferenced_entity_ids = Cleaner.find_unreferenced_entities(entities, relations, console)
-
-        #no need to cull relations as this is done in frontend
-        #relations = filter_invalid_relations(relations, entities, properties)
-
         entities = remove_unconnected_vertices(entities, relations)
-
+        relations = filter_invalid_relations(relations, entities, properties)
         return entities, properties, relations
     
     @staticmethod

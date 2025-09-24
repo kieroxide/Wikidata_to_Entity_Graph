@@ -20,7 +20,7 @@ def remove_unconnected_vertices(entities, relations):
         return referenced_entities
 
 def filter_invalid_relations(relations, entities, properties):
-    """Removes any relation that include entities/properties not """
+    """Removes any relation that include invalid entities/properties"""
     cleaned_relations = {}
     for source, relation in relations.items():
         if source not in entities:
