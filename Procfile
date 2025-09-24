@@ -1,1 +1,1 @@
-web: gunicorn WikiGraphServer.py
+web: gunicorn WikiGraphServerPro.py:server.app
