@@ -1,8 +1,8 @@
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 from py.WikiGraph_Manager import WikiGraph_Manager
-from py.Data_Handler import Data_Handler
 from pathlib import Path
+import os
 
 class WikiGraphServer:
     def __init__(self):
@@ -14,7 +14,7 @@ class WikiGraphServer:
         self.manager.change_json_dir(self.data_path)
     
         self.register_routes()
-    
+
     def register_routes(self):
         """Register all Flask routes."""
         self.app.route('/data/<path:filename>')(self.serve_data)
@@ -32,7 +32,7 @@ class WikiGraphServer:
             manager = WikiGraph_Manager()
             entities, properties, relations = manager.build(entity_id, depth, relation_limit)
 
-            manager.save_all() # long-term cache will change to sql eventually
+            #manager.save_all() # long-term cache will change to sql eventually
             return jsonify({"status"    : "ok",
                             "data"      :{
                                 "entities"  : entities,
@@ -42,9 +42,11 @@ class WikiGraphServer:
             print(f"❌ Error processing {entity_id}: {e}")
             return jsonify({"status": "error", "message": str(e)}), 500
         
-    def run(self, debug=True, port=5000):
+    def run(self, debug=True, port=None):
         """Run the Flask server"""
-        self.app.run(debug=debug, port=port)
+        if port is None:
+            port = int(os.environ.get("PORT", 5000))
+        self.app.run(debug=debug, host="0.0.0.0", port=port)
 
 server = WikiGraphServer()
-server.run()
+server.run(debug=False)
