@@ -49,3 +49,4 @@ class WikiGraphServer:
         self.app.run(debug=debug, host="0.0.0.0", port=port)
 
 server = WikiGraphServer()
+app = server.app
