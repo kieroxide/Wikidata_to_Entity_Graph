@@ -10,7 +10,7 @@ import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 config_path = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))), "config.json"
+    os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "config.json"
 )
 
 # Configuration constants
