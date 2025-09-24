@@ -18,7 +18,7 @@ DEFAULT_BATCH_SIZE = 50
 MAX_QUERY_ATTEMPTS = 3
 RELATION_LIMIT = 20
 WIKIDATA_ENDPOINT = "https://query.wikidata.org/sparql"
-RETRY_DELAY = 1
+RETRY_DELAY = 0.5
 NUMBER_OF_DATA_WORKERS = 4
 NUMBER_OF_RELATION_WORKERS = 2
 
@@ -47,6 +47,7 @@ class Wikidata_Client:
                 sparql.setReturnFormat(JSON)
 
                 sparql.setQuery(query)
+                sparql.addCustomHttpHeader("User-Agent", "ForceDirectedGraphBot/1.0 (FDG@github.com)")
                 results = sparql.query().convert()
                 return results
             except Exception as e:
