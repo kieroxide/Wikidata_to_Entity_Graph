@@ -2,28 +2,70 @@ from .CleanerUtility import remove_unconnected_vertices, filter_invalid_relation
 
 class Cleaner:
     @staticmethod
-    def clean_data(entities: dict, properties: dict, relations: dict, console=False):
+    def clean_data(source_id: str, entities: dict, properties: dict, relations: dict, console=False):
         """Combs through data culling any incombatible data, Currently properties are not touched
         as I have come across no errors"""
-
-        # Removes entities and properties with no labels/ bad labels
-        # Removes relations that reference missing entities/properties
-        # Remove entities with no relations
-
-        no_label_entities = Cleaner.find_no_label_entities(entities, console)
         
         # Remove entities with no labels
+        no_label_entities = Cleaner.find_no_label_entities(entities, console)
         for no_label_entity in no_label_entities:
             entities.pop(no_label_entity, None)
 
-        # Remove properties with no labels
         no_label_properties = Cleaner.find_no_label_properties(properties, console)
-        for label in no_label_properties:
-            properties.pop(label, None)
-            
-        entities = remove_unconnected_vertices(entities, relations)
+        for prop_id in no_label_properties:
+            properties.pop(prop_id)
+        
         relations = filter_invalid_relations(relations, entities, properties)
+        
+        unreferenced_entity_ids = Cleaner.find_unreferenced_entities(entities, relations, console)
+        for unreference_entity_id in unreferenced_entity_ids:
+            entities.pop(unreference_entity_id, None)
+
+        entities = remove_unconnected_vertices(entities, relations)
+
+        entities, relations = Cleaner.ensure_one_component(source_id ,relations, entities, )
+
         return entities, properties, relations
+    
+    @staticmethod
+    def ensure_one_component(source_id, relations, entities):
+        """Keeps only the connected component containing source_id."""
+        if source_id not in entities:
+            return {}, {}
+
+        # Build undirected adjacency list
+        from collections import deque, defaultdict
+
+        adj = defaultdict(set)
+        for src, rels in relations.items():
+            for targets in rels.values():
+                for tgt in targets:
+                    adj[src].add(tgt)
+                    adj[tgt].add(src)
+
+        # BFS to find all reachable nodes from source_id
+        visited = set()
+        queue = deque([source_id])
+        while queue:
+            node = queue.popleft()
+            if node not in visited:
+                visited.add(node)
+                queue.extend(adj[node] - visited)
+
+        # Filter entities and relations to only those in the component
+        filtered_entities = {eid: data for eid, data in entities.items() if eid in visited}
+        filtered_relations = {}
+        for src, rels in relations.items():
+            if src in visited:
+                filtered_rels = {}
+                for prop, targets in rels.items():
+                    filtered_targets = [t for t in targets if t in visited]
+                    if filtered_targets:
+                        filtered_rels[prop] = filtered_targets
+                if filtered_rels:
+                    filtered_relations[src] = filtered_rels
+
+        return filtered_entities, filtered_relations
     
     @staticmethod
     def find_no_label_entities(entities, console=False):
@@ -68,7 +110,8 @@ class Cleaner:
         if console:
             print("Entity test passed!")
         return set()
-        
+    
+    @staticmethod
     def find_unreferenced_entities(entities, relations, console=False):
         all_ids = set()
 
